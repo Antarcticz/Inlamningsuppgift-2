@@ -6,12 +6,15 @@ const validateText = (id) => {
     const regExText = /^[a-öA-Ö\s\-]*$/;
 
     if(input.value.trim() === '') {
+        console.log(id + ": has to have a value.");
         return setError(input);
     } 
     else if(input.value.length < 2) {
+        console.log(id + ": has to have 2 or more letters.");
         return setError(input);
     }
     else if(!regExText.test(input.value)) {
+        console.log(id + ": cant have numbers and symbols.");
         return setError(input);
     }
     else {
@@ -24,9 +27,11 @@ const validateEmail = (id) => {
     const regExMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,6}$/;
 
     if(email.value.trim() === '') {
+        console.log(id + ": has to have a value");
         return setError(email);
     }
     else if(!regExMail.test(email.value)) {
+        console.log(id + ": has to have correct symbols.");
         return setError(email);
     }
     else {
@@ -34,20 +39,24 @@ const validateEmail = (id) => {
     }
 }
 
-const validatePassword = () => {
+const validatePassword = (id) => {
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeatPassword');
 
     if(password.value == (' ') > 0) {
+        console.log(id + ": has to have a value.");
         return setError(password);
     }
-    else if(repeatPassword.value == '') {
+    if(repeatPassword.value == '') {
+        console.log(id + ": has to have a value.");
         return setError(repeatPassword);
     }
     else if(password.value != repeatPassword.value) {
+        console.log(id + ": has to be the same as password.");
         return setError(repeatPassword);
     }
     else if(password.value.length < 6) {
+        console.log(id + ": has to have 6 or more characters.");
         return setError(password);
     }
     else if(password.value === repeatPassword.value) {
@@ -59,6 +68,7 @@ const validateCheck = (id) => {
     const checkbox = document.querySelector(id);
 
     if(!checkbox.checked) {
+        console.log(id + ": you have to check the checkbox.");
         return setError(checkbox);
     }
     else {
