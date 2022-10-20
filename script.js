@@ -2,10 +2,10 @@ const form = document.querySelector('#validationForm');
 const errorMessage = document.querySelector('#errorMessage');
 
 const validateText = (id) => {
-    const input = document.querySelector(id);    // hämtar en referens till våran input med hjälp av id
+    const input = document.querySelector(id);
     const regExText = /^[a-öA-Ö\s\-]*$/;
 
-    if(input.value.trim() === '') {               // Här kallar vi på setError funktionen och skickar med våran referens till input
+    if(input.value.trim() === '') {
         return setError(input);
     } 
     else if(input.value.length < 2) {
@@ -72,31 +72,31 @@ const setSuccess = (input) => {
     return true;
 }
 
-const setError = (input) => {        // Deklarerar setError och tar emot en input referens
+const setError = (input) => {
     input.classList.add();
     input.classList.remove();
     input.focus();
     return false;
 }
 
-form.addEventListener('submit', e => {  // lyssnar efter ett event 'submit'
-    e.preventDefault();                  // förhindrar webbläsaren att ladda om sidan
+form.addEventListener('submit', e => {
+    e.preventDefault();
     
-    const errors = [];  // skapar en tom array där vi kan lägga eventuella error
+    const errors = [];
     
     for(let i = 0; i < form.length; i++) {
-        const inputId = '#' + form[i].id;  // plockar ut id på den aktuella inputen
+        const inputId = '#' + form[i].id;
     
-        if(form[i].type === 'text') {     //Kollar om den aktuella inputen är av typen text
-            errors[i] = validateText(inputId); // validerar rätt typ av input
+        if(form[i].type === 'text') {
+            errors[i] = validateText(inputId);
         } 
-        else if(form[i].type === 'email') {     //Kollar om den aktuella inputen är av typen email
+        else if(form[i].type === 'email') {
             errors[i] = validateEmail(inputId);
         }
-        else if(form[i].type === 'password') {    //Kollar om den aktuella inputen är av typen password
+        else if(form[i].type === 'password') {
             errors[i] = validatePassword(inputId);
         }
-        else if(form[i].type === 'checkbox') {     //Kollar om den aktuella inputen är av typen checkbox
+        else if(form[i].type === 'checkbox') {
             errors[i] = validateCheck(inputId);
         }
     }
