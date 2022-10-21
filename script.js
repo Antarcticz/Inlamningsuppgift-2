@@ -54,7 +54,7 @@ const validatePassword = (id) => {
         return setError(password);
     }  
     else if(password.value !== repeatPassword.value) {
-        console.log((id) + ": Repeat Password has to be equal to Password.");
+        console.log(id + ": Repeat Password has to be equal to Password.");
         return setError(repeatPassword);
     }
     else if(password.value === repeatPassword.value) {
