@@ -53,7 +53,7 @@ const validatePassword = (id) => {
         console.log(id + ": has to have 6 or more characters.");
         return setError(password);
     }  
-    else if(password.value === repeatPassword.value) {
+    else {
         return setSuccess(password);
     }
 }
@@ -100,7 +100,7 @@ form.addEventListener('submit', e => {
         else if(form[i].type === 'checkbox') {
             errors[i] = validateCheck(inputId);
         }
-        else if(form[i].type === 'password') {
+        else if(form[i].type === password.value) {
             errors[i] = validatePassword(inputId);
         }
         else if(password.value !== repeatPassword.value) {
