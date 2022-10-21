@@ -44,7 +44,7 @@ const validatePassword = (id) => {
     const repeatPassword = document.querySelector('#repeatPassword');
     // const regExPassword = /^\S*$/;
 
-        //!BUG skriver ut felmeddelande i consolen för både password och passwordError även om det bara är fel på 1 av dom.
+        //!BUG skriver ut samma felmeddelande i consolen för både password och repeatPassword även om det bara är fel på 1 av dom.
     if(password.value.trim() === '') {
         console.log(id + ": has to have a value.");
         return setError(password);
