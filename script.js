@@ -14,7 +14,7 @@ const validateText = (id) => {
         return setError(input);
     }
     else if(!regExText.test(input.value)) {
-        console.log(id + ": cant have numbers and symbols.");
+        console.log(id + ": cant contain numbers and symbols.");
         return setError(input);
     }
     else {
@@ -42,22 +42,23 @@ const validateEmail = (id) => {
 const validatePassword = (id) => {
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeatPassword');
+    const regExPassword = /^\S*$/;
 
-    if(password.value == (' ') > 0) {
+    if(password.value.trim() === '') {
         console.log(id + ": has to have a value.");
         return setError(password);
     }
-    if(repeatPassword.value == '') {
-        console.log(id + ": has to have a value.");
-        return setError(repeatPassword);
-    }
-    else if(password.value != repeatPassword.value) {
-        console.log(id + ": has to be the same as password.");
-        return setError(repeatPassword);
-    }
+    else if(!regExPassword.test(password.value)) {
+        console.log(id + ": cant contain whitespace.")
+        return setError(password);
+    }   //! skriver ut error för password och passwordError även om det bara är fel på 1 av dom.
     else if(password.value.length < 6) {
         console.log(id + ": has to have 6 or more characters.");
         return setError(password);
+    }
+    else if(password.value !== repeatPassword.value) {
+        console.log(id + ": has to be equal to password.");
+        return setError(repeatPassword);
     }
     else if(password.value === repeatPassword.value) {
         return setSuccess(password);
@@ -110,10 +111,10 @@ form.addEventListener('submit', e => {
             errors[i] = validateCheck(inputId);
         }
     }
-    console.log(errors);
+    // console.log(errors);
 
     if(errors.includes(false)) { 
-        console.log('Somthing went wrong.');
+        console.log('Somthing went wrong!');
         errorMessage.classList.remove('d-none');
     }
     else if(errors.includes(true)) {
