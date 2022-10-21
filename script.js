@@ -14,7 +14,7 @@ const validateText = (id) => {
         return setError(input);
     }
     else if(!regExText.test(input.value)) {
-        console.log(id + ": cant contain numbers and symbols.");
+        console.log(id + ": cannot contain numbers and symbols.");
         return setError(input);
     }
     else {
