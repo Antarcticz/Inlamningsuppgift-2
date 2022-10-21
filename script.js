@@ -42,22 +42,19 @@ const validateEmail = (id) => {
 const validatePassword = (id) => {
     const password = document.querySelector('#password');
     const repeatPassword = document.querySelector('#repeatPassword');
-    const regExPassword = /^\S*$/;
+    // const regExPassword = /^\S*$/;
 
+        //!BUG skriver ut felmeddelande i consolen för både password och passwordError även om det bara är fel på 1 av dom.
     if(password.value.trim() === '') {
         console.log(id + ": has to have a value.");
         return setError(password);
     }
-    else if(!regExPassword.test(password.value)) {
-        console.log(id + ": cant contain whitespace.")
-        return setError(password);
-    }   //! skriver ut error för password och passwordError även om det bara är fel på 1 av dom.
     else if(password.value.length < 6) {
         console.log(id + ": has to have 6 or more characters.");
         return setError(password);
-    }
+    }  
     else if(password.value !== repeatPassword.value) {
-        console.log(id + ": has to be equal to password.");
+        console.log((id) + ": Repeat Password has to be equal to Password.");
         return setError(repeatPassword);
     }
     else if(password.value === repeatPassword.value) {
@@ -114,7 +111,7 @@ form.addEventListener('submit', e => {
     // console.log(errors);
 
     if(errors.includes(false)) { 
-        console.log('Somthing went wrong!');
+        console.log('SOMETHING WENT WRONG!');
         errorMessage.classList.remove('d-none');
     }
     else if(errors.includes(true)) {
