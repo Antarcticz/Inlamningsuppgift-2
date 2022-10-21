@@ -1,5 +1,7 @@
 const form = document.querySelector('#validationForm');
 const errorMessage = document.querySelector('#errorMessage');
+const password = document.querySelector('#password');
+const repeatPassword = document.querySelector('#repeatPassword');
 
 const validateText = (id) => {
     const input = document.querySelector(id);
@@ -40,11 +42,9 @@ const validateEmail = (id) => {
 }
 
 const validatePassword = (id) => {
-    const password = document.querySelector('#password');
-    const repeatPassword = document.querySelector('#repeatPassword');
+    
     // const regExPassword = /^\S*$/;
 
-        //!BUG skriver ut samma felmeddelande i consolen för både password och repeatPassword även om det bara är fel på 1 av dom.
     if(password.value.trim() === '') {
         console.log(id + ": has to have a value.");
         return setError(password);
@@ -53,10 +53,6 @@ const validatePassword = (id) => {
         console.log(id + ": has to have 6 or more characters.");
         return setError(password);
     }  
-    else if(password.value !== repeatPassword.value) {
-        console.log(id + ": Repeat Password has to be equal to Password.");
-        return setError(repeatPassword);
-    }
     else if(password.value === repeatPassword.value) {
         return setSuccess(password);
     }
@@ -101,15 +97,19 @@ form.addEventListener('submit', e => {
         else if(form[i].type === 'email') {
             errors[i] = validateEmail(inputId);
         }
-        else if(form[i].type === 'password') {
-            errors[i] = validatePassword(inputId);
-        }
         else if(form[i].type === 'checkbox') {
             errors[i] = validateCheck(inputId);
         }
+        else if(form[i].type === 'password') {
+            errors[i] = validatePassword(inputId);
+        }
+        else if(password.value !== repeatPassword.value) {
+            console.log("#repeatPassword: has to be equal to Password.");
+            errors[i] = setError(repeatPassword);
+        }   
     }
     // console.log(errors);
-
+    
     if(errors.includes(false)) { 
         console.log('SOMETHING WENT WRONG!');
         errorMessage.classList.remove('d-none');
